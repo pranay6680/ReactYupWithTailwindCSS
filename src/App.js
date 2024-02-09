@@ -13,7 +13,7 @@ function App() {
     },
     //to make changes in intitalvalues we have to write below code [onsubmit is predefined hook in formik]
     onSubmit:(values)=>{
-     console.log('onsubmit',values)
+     console.log('onsubmit',values)  //ignore this command
     },
     //to validate errors use below code [validate is a predefined hook in formik]
     validate:(values)=>{       //[Here values takes the initialvalues properties]
