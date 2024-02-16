@@ -3,7 +3,10 @@ import "./App.css";
 import { useFormik, Form } from "formik";
 import * as yup from "yup";
 
+
 function App() {
+  
+   
   const pran = useFormik({
     // fixed way writing intialvalues
     initialValues: {
@@ -12,9 +15,9 @@ function App() {
       password: "",
       confirmPassword: "",
     },
-
+   
     //to make changes in intitalvalues we have to write below code [onsubmit is predefined hook in formik]
-
+     
     //to validate errors use below code
     validationSchema: yup.object({
       name: yup
@@ -36,9 +39,14 @@ function App() {
         .oneOf([yup.ref("password"), null], "Password must match")
         .required("Confirm password is required"),
     }),
-    onSubmit: (values) => {
-      //ignore this command
+    onSubmit: (values, {request , setRequest}) => {
+      const isConfirmed = window.confirm("You are Redirecting to other URL..")
+      if(isConfirmed){
+        window.location.href =  'https://chat.openai.com/c/0e574a9e-c0ea-45b2-808d-933459c33b4a';
+      }
+      // formik handles this submission itself when clicked on button
     },
+   
   });
   return (
     <div className="App grid place-content-center h-dvh">
@@ -100,7 +108,7 @@ function App() {
           <div className="before:content-['*'] w-5f8 text-red-700 pt-3 ml-20">{pran.errors.confirmPassword}</div>
         ) : null}
         <br/>
-        <button className="border-2 p-3 border-violet-500 rounded-md " type="submit">
+        <button className="border-2 p-3 border-violet-500 rounded-md " type="submit" >
           Submit
         </button>
       </form>
